@@ -140,6 +140,7 @@ public class AnalysisWindow {
         System.out.println("       # of Detections in FDS: "+fdsNum()+" birds");
         System.out.println("          Population Estimate: "+findPopulationEstimate()+" birds/hectare");
         System.out.println(" Coefficient of Detectability: "+findCoD());
+        System.exit(0);
     }
 
     private int fdsNum() {
