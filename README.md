@@ -6,4 +6,4 @@ Executable file in the works.
 
 Written in Java, UI built using Swing.
 
-Special thanks to GitHub Copilot for writing the tedious functions.
+Please note that your terminal must support ANSI color codes for the fancy formatting features.
