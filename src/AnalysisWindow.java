@@ -126,11 +126,11 @@ public class AnalysisWindow {
         System.out.println("       # of Detections in FDS: "+fdsNum()+" birds");
         System.out.println("          Population Estimate: "+findPopulationEstimate()+" birds/hectare");
         if (Double.parseDouble(findCoD()) > 0.5) {
-            System.out.println("Coefficient of Detectability: "+ANSI_GREEN+findCoD()+ANSI_RESET);
+            System.out.println(" Coefficient of Detectability: "+ANSI_GREEN+findCoD()+ANSI_RESET);
         } else if (Double.parseDouble(findCoD()) < 0.5 && Double.parseDouble(findCoD()) > 0.2) {
-            System.out.println("Coefficient of Detectability: "+ANSI_YELLOW+findCoD()+ANSI_RESET);
+            System.out.println(" Coefficient of Detectability: "+ANSI_YELLOW+findCoD()+ANSI_RESET);
         } else {
-            System.out.println("Coefficient of Detectability: "+ANSI_RED+findCoD()+ANSI_RESET);
+            System.out.println(" Coefficient of Detectability: "+ANSI_RED+findCoD()+ANSI_RESET);
         }
         System.exit(0);
     }
