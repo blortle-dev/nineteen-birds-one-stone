@@ -37,6 +37,11 @@ public class AnalysisWindow {
     private final int transectWidth; // One side of the transect width. *2 for full width. IN METERS
     private final double transectLength; // Length of the transect. IN KILOMETERS
 
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public AnalysisWindow() {
         JFrame frame = new JFrame("AnalysisWindow");
         frame.setContentPane(panel1);
@@ -127,7 +132,13 @@ public class AnalysisWindow {
         System.out.println("         Full Detection Strip: "+findFullDetection()+" m");
         System.out.println("       # of Detections in FDS: "+fdsNum()+" birds");
         System.out.println("          Population Estimate: "+findPopulationEstimate()+" birds/hectare");
-        System.out.println(" Coefficient of Detectability: "+findCoD());
+        if (Double.parseDouble(findCoD()) > 0.5) {
+            System.out.println("Coefficient of Detectability: "+ANSI_GREEN+findCoD()+ANSI_RESET);
+        } else if (Double.parseDouble(findCoD()) < 0.5 && Double.parseDouble(findCoD()) > 0.2) {
+            System.out.println("Coefficient of Detectability: "+ANSI_YELLOW+findCoD()+ANSI_RESET);
+        } else {
+            System.out.println("Coefficient of Detectability: "+ANSI_RED+findCoD()+ANSI_RESET);
+        }
         System.exit(0);
     }
 
