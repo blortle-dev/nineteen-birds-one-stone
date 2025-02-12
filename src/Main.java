@@ -8,6 +8,6 @@ public class Main {
         final double transectLength = 0.8; // Length of the transect, in kilometers.
 
         System.out.println("Starting program...");
-        AnalysisWindow analysisWindow = new AnalysisWindow(transectWidth, transectLength);
+        new AnalysisWindow(transectWidth, transectLength);
     }
 }
