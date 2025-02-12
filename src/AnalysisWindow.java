@@ -34,19 +34,8 @@ public class AnalysisWindow {
     private JSpinner v2;
     private JSpinner v1;
 
-    private int r1;
-    private int r2;
-    private int r3;
-    private int r4;
-    private int r5;
-    private int r6;
-    private int r7;
-    private int r8;
-    private int r9;
-    private int r10;
-
-    private int transectWidth; // One side of the transect width. *2 for full width. IN METERS
-    private double transectLength; // Length of the transect. IN KILOMETERS
+    private final int transectWidth; // One side of the transect width. *2 for full width. IN METERS
+    private final double transectLength; // Length of the transect. IN KILOMETERS
 
     public AnalysisWindow() {
         JFrame frame = new JFrame("AnalysisWindow");
@@ -59,10 +48,10 @@ public class AnalysisWindow {
         transectWidth = 125;
         transectLength = 1;
 
-        analyzeButton.addActionListener(e -> {
+        analyzeButton.addActionListener(_ -> {
+            frame.setVisible(false);
             analyze();
-        });
-    }
+        });    }
 
     /*
     @param transectWidth: One side of the transect width. *2 for full width. IN METERS
@@ -80,7 +69,7 @@ public class AnalysisWindow {
         this.transectWidth = transectWidth;
         this.transectLength = transectLength;
 
-        analyzeButton.addActionListener(e -> {
+        analyzeButton.addActionListener(_ -> {
             frame.setVisible(false);
             analyze();
         });
@@ -92,13 +81,13 @@ public class AnalysisWindow {
         if (inT == 0) {
             return " ".repeat(6);
         }
-        return String.valueOf(inT) + " ".repeat(6 - len);
+        return inT + " ".repeat(6 - len);
     }
 
     private String t(JSpinner one, JSpinner two, JSpinner three, JSpinner four, JSpinner five, JSpinner six, JSpinner seven, JSpinner eight, JSpinner nine, JSpinner ten) {
         int total = (int) one.getValue() + (int) two.getValue() + (int) three.getValue() + (int) four.getValue() + (int) five.getValue() + (int) six.getValue() + (int) seven.getValue() + (int) eight.getValue() + (int) nine.getValue() + (int) ten.getValue();
         int len = String.valueOf(total).length();
-        return String.valueOf(total) + " ".repeat(6 - len);
+        return total + " ".repeat(6 - len);
     }
 
     private int ti(JSpinner one, JSpinner two, JSpinner three, JSpinner four, JSpinner five, JSpinner six, JSpinner seven, JSpinner eight, JSpinner nine, JSpinner ten) {
@@ -108,7 +97,7 @@ public class AnalysisWindow {
     private String v(JSpinner one, JSpinner two, JSpinner three) {
         int total = (int) one.getValue() + (int) two.getValue() + (int) three.getValue();
         int len = String.valueOf(total).length();
-        return String.valueOf(total) + " ".repeat(6 - len);
+        return total + " ".repeat(6 - len);
     }
 
     private int vi(JSpinner one, JSpinner two, JSpinner three) {
@@ -118,11 +107,10 @@ public class AnalysisWindow {
     private String add(int one, int two, int three) {
         int total = one + two + three;
         int len = String.valueOf(total).length();
-        return String.valueOf(total) + " ".repeat(6 - len);
+        return total + " ".repeat(6 - len);
     }
 
     private void analyze() {
-        calcRows();
         System.out.println("ANALYSIS COMPLETE\n");
         System.out.println("||============================================================================================================||");
         System.out.println("||         | 0-5    | 5-10   | 10-15  | 15-20  | 20-25  | 25-30  | 30-35  | 35-65  | 65-95  | 95-125 | Total  ||");
@@ -193,19 +181,6 @@ public class AnalysisWindow {
         throw new IllegalArgumentException("Invalid baseSpinner");
     }
 
-    public void calcRows() {
-        r1 = (int) s1.getValue() + (int) c1.getValue() + (int) v1.getValue();
-        r2 = (int) s2.getValue() + (int) c2.getValue() + (int) v2.getValue();
-        r3 = (int) s3.getValue() + (int) c3.getValue() + (int) v3.getValue();
-        r4 = (int) s4.getValue() + (int) c4.getValue() + (int) v4.getValue();
-        r5 = (int) s5.getValue() + (int) c5.getValue() + (int) v5.getValue();
-        r6 = (int) s6.getValue() + (int) c6.getValue() + (int) v6.getValue();
-        r7 = (int) s7.getValue() + (int) c7.getValue() + (int) v7.getValue();
-        r8 = (int) s8.getValue() + (int) c8.getValue() + (int) v8.getValue();
-        r9 = (int) s9.getValue() + (int) c9.getValue() + (int) v9.getValue();
-        r10 = (int) s10.getValue() + (int) c10.getValue() + (int) v10.getValue();
-    }
-
     private String findFullDetection() {
         int[] totals = {vi(s1, c1, v1), vi(s2, c2, v2), vi(s3, c3, v3), vi(s4, c4, v4), vi(s5, c5, v5), vi(s6, c6, v6), vi(s7, c7, v7), vi(s8, c8, v8), vi(s9, c9, v9), vi(s10, c10, v10)};
         int[] meters = {5, 10, 15, 20, 25, 30, 35, 65, 95, 125};
@@ -219,53 +194,5 @@ public class AnalysisWindow {
             average = newAverage;
         }
         return String.format("%d", meters[meters.length - 1]);
-    }
-
-    /*
-    GETTERS
-     */
-
-    public int getTotal() {
-        return r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9 + r10;
-    }
-
-    public int getR1() {
-        return r1;
-    }
-
-    public int getR2() {
-        return r2;
-    }
-
-    public int getR3() {
-        return r3;
-    }
-
-    public int getR4() {
-        return r4;
-    }
-
-    public int getR5() {
-        return r5;
-    }
-
-    public int getR6() {
-        return r6;
-    }
-
-    public int getR7() {
-        return r7;
-    }
-
-    public int getR8() {
-        return r8;
-    }
-
-    public int getR9() {
-        return r9;
-    }
-
-    public int getR10() {
-        return r10;
     }
 }
